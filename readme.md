@@ -56,3 +56,40 @@ A mágica da conversão ocorre em três etapas que o script simula:
     * Para padronizar o armazenamento (1 Byte = 8 bits), um `0` é adicionado à esquerda: `01000001`.
 
 **Dica:** Tente converter letras maiúsculas e minúsculas! Você verá que 'A' (65) e 'a' (97) têm binários completamente diferentes.
+
+1. Conversão de Decimal (Base 10) para Binário (Base 2)
+O método padrão para essa conversão é a Divisão Sucessiva por 2. Você divide o número decimal por 2 e anota o resto. O processo continua com o quociente até que ele seja 0.
+
+Exemplo com o número 65 (Letra 'A' ASCII):
+
+```
+Divisão	Quociente	Resto
+65 / 2	   32	      1
+32 / 2	   16	      0
+16 / 2	   8	      0
+8 / 2	   4	      0
+4 / 2 	   2	      0
+2 / 2	   1	      0
+1 / 2	   0	      11
+```
+O número binário é formado lendo os restos de baixo para cima:$65_{10} = 1000001_2$
+
+2. Como Funciona na Prática (Pesos Binários)Para verificar o resultado e entender o valor de cada bit (0 ou 1), usamos os Pesos Binários. 
+Cada posição do bit representa uma potência de 2 ($2^n$), começando por $2^0$ na direita (bit menos significativo).
+
+```
+Posição (n), Peso Binário (2n), Bit, Valor (2n×Bit)
+    7,            128,            0,     0
+    6,             64,            1,    64
+    5,             32,            0,     0
+    4,             16,            0,     0
+    3,              8,            0,     0
+    2,              4,            0,     0
+    1,              2,            0,     0
+    0,              1,            1,     1
+Total,,,64 + 1 = 65
+```
+
+Ao somar apenas os pesos correspondentes aos bits que estão em 1, chegamos novamente ao valor decimal original 65.
+
+Resultado Final em 1 Byte (8 bits): 01000001 (Adicionamos o zero à esquerda para completar 8 bits).
